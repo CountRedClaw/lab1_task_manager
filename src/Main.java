@@ -88,17 +88,15 @@ public class Main {
         System.out.println("4 - Сохранить задачи");
         System.out.println("0 - Выйти");
 
-        int res;
         String result;
 
         while (true) {
             result = input.nextLine();
-            if (!result.matches(".*[0-4].*")) {
+            if (!result.matches("[0-4]")) {
                 continue;
             } else break;
         }
-        res = Integer.parseInt(result);
 
-        return res;
+        return Integer.parseInt(result);
     }
 }
