@@ -5,7 +5,7 @@ import java.util.*;
 
 public class TaskMap {
     private static Map<Integer, TaskWrapper> taskMap = new HashMap<>();
-    private static Timer timer = new Timer();                               // На этот таймер в методе add() навешиваются таймертаски (timer.schedule), получаемые из словаря taskMap
+    private static Timer timer = new Timer();                           // На этот таймер в методе add() навешиваются таймертаски (timer.schedule), получаемые из словаря taskMap
 
     public static void delete(int id) {
         taskMap.remove(id);
@@ -54,5 +54,6 @@ public class TaskMap {
                     Notification.showNotification(task, "Пока вас не было, произошло следующее событие:");
                 }
             }
+        Task.setId(Collections.max(getTaskMap().keySet())); // для сохранения уникальности поля Task.taskId необходимо присвоить Task.id максимальное значение из имеющихся
     }
 }

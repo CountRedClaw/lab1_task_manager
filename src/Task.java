@@ -21,6 +21,10 @@ public class Task implements Serializable {
         setTime(time);
     }
 
+    public static void setId(int id) {
+        Task.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -55,7 +59,7 @@ public class Task implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("%3d%15s", getTaskId(), getName())  + "    " + getTime();
+        return String.format("%5d%20s", getTaskId(), getName())  + "    " + getTime();
     }
 
     public boolean isActual() {

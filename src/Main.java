@@ -37,16 +37,19 @@ public class Main {
     private static void fillData() {
         try {
             TaskMap.loadFromFile();
-        } catch (Exception e) {
-            //e.printStackTrace();
+        } catch (Exception ignored) {
         }
     }
 
     public static void deleteTask() {
         Scanner input = new Scanner(System.in);
         System.out.println("Введите id задачи, которую нужно удалить");
-        int id = input.nextInt();
-        TaskMap.delete(id);
+        try {
+            int id = input.nextInt();
+            TaskMap.delete(id);
+        } catch (Exception e) {
+            System.out.println("Ошибка, попробуйте еще раз");
+        }
     }
 
     public static void addTask() {
@@ -72,7 +75,7 @@ public class Main {
     }
 
     public static void showTasks() {
-        System.out.printf("%3s%15s%9s\n", "id", "Название", "Время");
+        System.out.printf("%5s%20s%9s\n", "id", "Название", "Время");
         System.out.println("--------------------------------------------------");
         Map<Integer, TaskWrapper> taskMap = TaskMap.getTaskMap();
         taskMap.forEach((key, value) -> System.out.println(value.toString()));
@@ -90,11 +93,11 @@ public class Main {
 
         String result;
 
-        while (true) {
+        while (true) {          // Ждём, пока пользователь не введёт число от 0 до 4
             result = input.nextLine();
-            if (!result.matches("[0-4]")) {
-                continue;
-            } else break;
+            if (result.matches("[0-4]")) {
+                break;
+            }
         }
 
         return Integer.parseInt(result);
